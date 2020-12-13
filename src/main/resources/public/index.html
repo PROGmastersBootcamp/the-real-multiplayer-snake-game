@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=500, user-scalable=yes">
+    <title>Snake Game with websocket</title>
+
+    <!-- Bootstrap css -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" rel="stylesheet">
+
+    <!-- Font Awesome (icon collection) -->
+    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" rel="stylesheet">
+<style>
+    @media only screen and (min-width: 700px) {
+        #mobileshow  {
+            display: none !important;}
+    }
+</style>
+</head>
+<body>
+<div style="background-color: #e9ecef;">
+
+    <div class="row">
+        <div class="col-sm text-center">
+            <canvas id="canvas" width="500" height="500" style="border: 1px solid black"></canvas>
+        </div>
+
+        <div class="col-sm text-center">
+            <table id="mobileshow" align="center">
+                <tr>
+                    <td></td>
+                    <td><button id="UP" class="btn btn-primary btn-lg btn-block" style="padding-top: 20%; padding-bottom: 20%">UP</button></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><button id="LEFT"  class="btn btn-primary btn-lg btn-block" style="padding-top: 20%; padding-bottom: 20%">LEFT</button></td>
+                    <td class="text-center">CONTROL</td>
+                    <td><button id="RIGHT"  class="btn btn-primary btn-lg btn-block" style="padding-top: 20%; padding-bottom: 20%">RIGHT</button></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button id="DOWN"  class="btn btn-primary btn-lg btn-block" style="padding-top: 20%; padding-bottom: 20%">DOWN</button></td>
+                    <td></td>
+                </tr>
+            </table>
+            <br/>
+            <div class="mb-3">
+                <label class="form-label">Nick name: </label>
+                <input type="text" id="userNick" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="snakeColor" class="form-label">Color: </label>
+                <input type="color" id="snakeColor">
+            </div>
+            <div class="mb-3 text-center">
+                <button id="join" class="btn btn-success">Join</button>
+                <button id="leave" class="btn btn-success" disabled>Leave</button>
+            </div>
+            <div class="mb-3 text-center">
+                <div id="status" class="alert alert-success" role="alert"></div>
+            </div>
+            <div class="alert alert-primary text-center">
+                <div>Players in game:</div>
+                <div id="players"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="game.js"></script>
+<script src="websocket.js"></script>
+<script src="colors.js"></script>
+
+</body>
+</html>
