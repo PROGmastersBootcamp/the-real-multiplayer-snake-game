@@ -52,11 +52,18 @@
                 <input type="text" id="userNick" class="form-control">
             </div>
             <div class="mb-3">
+                <p>Where are you playing from?</p>
+                <input type="radio" name="whereFrom" id="home" value="home">
+                <label for="home" class="form-label">Home</label><br>
+                <input type="radio" name="whereFrom" id="personal" value="personal">
+                <label for="personal" class="form-label">Personal</label>
+            </div>
+            <div class="mb-3">
                 <label for="snakeColor" class="form-label">Color: </label>
                 <input type="color" id="snakeColor">
             </div>
             <div class="mb-3 text-center">
-                <button id="join" class="btn btn-success">Join</button>
+                <button id="join" class="btn btn-success" disabled>Join</button>
                 <button id="leave" class="btn btn-success" disabled>Leave</button>
             </div>
             <div class="mb-3 text-center">

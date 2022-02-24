@@ -58,7 +58,7 @@ public class SnakeGame {
     }
 
     private Snake joinGame(String sessionId, ClientMessage clientMessage) {
-        Snake snake = new Snake(clientMessage.getUserNick(), clientMessage.getColor());
+        Snake snake = new Snake(clientMessage.getUserNick(), clientMessage.getColor(), clientMessage.getWhereFrom());
         snakes.put(sessionId, snake);
 
         //send init information:

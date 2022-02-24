@@ -7,14 +7,16 @@ let fruit = {x: -1, y: -1};
 
 let snakes = {
     "wsSessionId1": {
-        "userNick": "Donkey1",
-        "color": "#000000",
-        "coordinates": []
+        'userNick': 'Donkey1',
+        'whereFrom': 'home',
+        'color': '#000000',
+        'coordinates': [],
     },
     "wsSessionId2": {
-        "userNick": "Donkey2",
-        "color": "#FF0000",
-        "coordinates": []
+        'userNick': 'Donkey2',
+        'whereFrom': 'personal',
+        'color': '#FF0000',
+        'coordinates': [],
     }
 };
 
@@ -54,13 +56,17 @@ let drawSnake = function (snakeData) {
 };
 
 const refreshPlayersTable = function (snakeData, players) {
-    let div = document.createElement("div");
+    let div = document.createElement('div');
     div.innerHTML = snakeData.userNick + ', score: ' + snakeData.score;
     div.style.color = snakeData.color;
-    div.style.border = "thin solid" + snakeData.color;
-    div.style.padding = "2px";
-    div.style.margin = "2px";
-    div.style.textAlign = "center";
+    if (snakeData.whereFrom === 'home') {
+        div.style.border = 'thin solid' + '#f80313';
+    } else {
+        div.style.border = 'thin solid' + '#0954df';
+    }
+    div.style.padding = '2px';
+    div.style.margin = '2px';
+    div.style.textAlign = 'center';
     players.appendChild(div);
 };
 
@@ -84,27 +90,38 @@ document.addEventListener("keydown", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    canvas = document.getElementById("canvas");
-    ctx = canvas.getContext("2d");
-    let joinButton = document.getElementById("join");
-    let leaveButton = document.getElementById("leave");
-    let userNick = document.getElementById("userNick");
-    let snakeColor = document.getElementById("snakeColor");
+    canvas = document.getElementById('canvas');
+    ctx = canvas.getContext('2d');
+    let joinButton = document.getElementById('join');
+    let leaveButton = document.getElementById('leave');
+    let userNick = document.getElementById('userNick');
+    let snakeColor = document.getElementById('snakeColor');
 
     userNick.value = 'Donkey' + Math.floor(Math.random() * 1000) + 1;
     snakeColor.value = COLORS[Math.floor(Math.random() * COLORS.length)];
 
-    document.getElementById("join").onclick = () => {
-        document.getElementById("status").innerHTML = "Joined to game.";
+    document.getElementById('home').onchange = () => {
+        if (leaveButton.disabled === true) {
+            joinButton.disabled = false;
+        }
+    };
+    document.getElementById('personal').onchange = () => {
+        if (leaveButton.disabled === true) {
+            joinButton.disabled = false;
+        }
+    };
+    document.getElementById('join').onclick = () => {
+        document.getElementById('status').innerHTML = 'Joined to game.';
         const joinMessage = {
             command: 'Join',
             userNick: userNick.value,
-            color: snakeColor.value
-        }
+            whereFrom: document.querySelector('input[name="whereFrom"]:checked').value,
+            color: snakeColor.value,
+        };
         socket.send(JSON.stringify(joinMessage));
         joinButton.disabled = true;
         leaveButton.disabled = false;
-    }
+    };
 
     document.getElementById("leave").onclick = () => {
         document.getElementById("status").innerHTML = "Left from game.";

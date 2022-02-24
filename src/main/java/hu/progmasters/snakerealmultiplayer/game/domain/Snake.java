@@ -17,6 +17,7 @@ import java.util.List;
 public class Snake {
     private String userNick;
     private String color;
+    private String whereFrom;
     private Integer score;
     private List<Coord> coordinates = new ArrayList<>();
     private Direction direction = Direction.R;
@@ -26,9 +27,10 @@ public class Snake {
 
     }
 
-    public Snake(String userNick, String color) {
+    public Snake(String userNick, String color, String whereFrom) {
         this.userNick = userNick;
         this.color = color;
+        this.whereFrom = whereFrom;
         this.score = 0;
         this.lastCommandTime = LocalDateTime.now();
         //add random init coords:
@@ -94,6 +96,14 @@ public class Snake {
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public String getWhereFrom() {
+        return whereFrom;
+    }
+
+    public void setWhereFrom(String whereFrom) {
+        this.whereFrom = whereFrom;
     }
 
     @Override
